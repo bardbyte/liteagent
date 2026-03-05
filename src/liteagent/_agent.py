@@ -15,11 +15,6 @@ import json
 import re
 from typing import Any, AsyncIterator, Callable, Type
 
-from langchain_core.messages import (
-    AIMessage, HumanMessage, SystemMessage, ToolMessage,
-)
-from safechain.tools.mcp import MCPToolAgent
-
 from ._bootstrap import get as _get_bundle, resolve_model_id
 from ._config import LiteAgentConfig
 from ._errors import BootstrapError, GuardrailError
@@ -111,6 +106,9 @@ class Agent:
             self._scoped_tools = self._bundle.tools
 
         # Each Agent resolves its own model_id without mutating the cache
+        # Lazy import — safechain is only needed at runtime, not at import time
+        from safechain.tools.mcp import MCPToolAgent
+
         model_id = resolve_model_id(self._bundle, self._model)
         self._mcp_agent = MCPToolAgent(model_id, self._scoped_tools)
 
@@ -449,6 +447,10 @@ class Agent:
 
 def _to_langchain(messages: list[dict]) -> list:
     """Convert dict messages to LangChain message objects."""
+    from langchain_core.messages import (
+        AIMessage, HumanMessage, SystemMessage, ToolMessage,
+    )
+
     lc = []
     for msg in messages:
         role = msg.get("role", "")

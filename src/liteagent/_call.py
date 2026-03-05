@@ -1,8 +1,5 @@
 """One-shot LLM call — no tool loop, just prompt -> response."""
 
-from langchain_core.messages import HumanMessage, SystemMessage
-from safechain.tools.mcp import MCPToolAgent
-
 from ._bootstrap import get as _get_bundle, resolve_model_id
 from ._config import LiteAgentConfig
 from ._result import Result
@@ -32,6 +29,9 @@ async def call(
         result = await call("Summarize this data", system="You are a data analyst")
         print(result)
     """
+    from langchain_core.messages import HumanMessage, SystemMessage
+    from safechain.tools.mcp import MCPToolAgent
+
     cfg = LiteAgentConfig.resolve(config)
     bundle = await _get_bundle(cfg)
 

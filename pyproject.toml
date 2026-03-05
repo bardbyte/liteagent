@@ -12,16 +12,15 @@ license = "MIT"
 authors = [{ name = "DMP Team" }]
 
 dependencies = [
-    "safechain",
-    "ee_config",
-    "langchain-core==0.3.83",
-    "langchain-mcp-adapter==2.1.7",
-    "mcp==1.0.0",
     "pyyaml>=6.0",
     "python-dotenv>=1.0.0",
     "rich>=13.0.0",
     "pydantic>=2.0.0",
 ]
+
+# These are required at runtime but managed by your environment's requirements.txt:
+#   safechain, ee_config, langchain-core==0.3.83, langchain-mcp-adapter==2.1.7, mcp==1.0.0
+# Install them alongside liteagent — they come with your SafeChain setup.
 
 [project.optional-dependencies]
 adk = ["google-adk>=0.3.0"]

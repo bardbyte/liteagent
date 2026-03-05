@@ -113,7 +113,7 @@ print_ok "liteagent installed"
 if python -c "import safechain" 2>/dev/null; then
     print_ok "safechain found"
 else
-    print_warn "safechain not installed — install from your internal registry:"
+    print_warn "safechain not installed — install from internal registry:"
     echo -e "        pip install safechain"
 fi
 
@@ -121,7 +121,7 @@ fi
 if python -c "import ee_config" 2>/dev/null; then
     print_ok "ee_config found"
 else
-    print_warn "ee_config not installed — install from your internal registry:"
+    print_warn "ee_config not installed — install from internal registry:"
     echo -e "        pip install ee_config"
 fi
 

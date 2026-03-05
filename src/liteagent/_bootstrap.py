@@ -84,20 +84,20 @@ async def _init(la_config: LiteAgentConfig) -> _BootstrapBundle:
             original=e,
         )
 
-    try:
-        ee_cfg = EEConfig.from_env()
-    except Exception as e:
-        raise BootstrapError(
-            f"Config.from_env() failed. Is CONFIG_PATH set in your .env? Error: {e}",
-            original=e,
-        )
-
     # Step 2: Load MCP tools
     try:
         from safechain.tools.mcp import MCPToolLoader
     except ImportError as e:
         raise BootstrapError(
             "safechain not installed. Install with: pip install safechain",
+            original=e,
+        )
+
+    try:
+        ee_cfg = EEConfig.from_env()
+    except Exception as e:
+        raise BootstrapError(
+            f"Config.from_env() failed. Is CONFIG_PATH set in your .env? Error: {e}",
             original=e,
         )
 

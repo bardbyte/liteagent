@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "liteagent"
+version = "0.1.0"
+description = "SafeChain made simple — one-shot calls, agentic workflows, and interactive chat in three lines of code."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "DMP Team" }]
+
+dependencies = [
+    "safechain",
+    "ee_config",
+    "langchain-core==0.3.83",
+    "langchain-mcp-adapter==2.1.7",
+    "mcp==1.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+adk = ["google-adk>=0.3.0"]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+liteagent = "liteagent._chat:_cli_entry"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/liteagent"]

@@ -81,7 +81,7 @@ class Agent:
         # Lazy-initialized
         self._bundle = None
         self._scoped_tools: list[Any] | None = None
-        self._mcp_agent: MCPToolAgent | None = None
+        self._mcp_agent: Any = None
 
     async def _ensure_init(self) -> None:
         """Lazy bootstrap on first use."""
